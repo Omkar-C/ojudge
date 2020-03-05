@@ -114,6 +114,8 @@ class Language {
 public:
 std::string name;
 std::string compilerVersion;
+std::optional< std::vector<unsigned char> > codeSkeleton;
+std::optional< std::string > aceStyle;
 std::optional< std::vector<unsigned char> > compileScript;
 std::optional< std::vector<unsigned char> > linkScript;
 std::vector<unsigned char> runScript;
@@ -123,10 +125,12 @@ dbo::collection< dbo::ptr<Contest> > contests;
 template<class Action>
 void persist(Action& a) {
 	dbo::field(a, name, "name");
-	dbo::field(a, compilerVersion, "compilerVersion");
-	dbo::field(a, compileScript, "compileScript");
-	dbo::field(a, linkScript, "linkScript");
-	dbo::field(a, runScript, "runScript");
+	dbo::field(a, compilerVersion, "compilerversion");
+	dbo::field(a, codeSkeleton, "codeskeleton");
+	dbo::field(a, aceStyle, "acestyle");
+	dbo::field(a, compileScript, "compilescript");
+	dbo::field(a, linkScript, "linkscript");
+	dbo::field(a, runScript, "runscript");
 	dbo::hasMany(a, submissions, dbo::ManyToOne, "language");
 	dbo::hasMany(a, contests, dbo::ManyToMany, "langs_contests");
 }
@@ -242,6 +246,7 @@ void updateDescription(long long problemId, std::vector<unsigned char>& descData
 Settings getSettings();
 std::string getSetting(std::string settingName);
 
+Languages getLanguages();
 
 private:
 dbo::Session session;
