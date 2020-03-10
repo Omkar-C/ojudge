@@ -7,26 +7,22 @@
 * Read the LICENSE file for information on license terms
 *********************************************************************/
 
-#ifndef WCODEEDITORWIDGET_H
-#define WCODEEDITORWIDGET_H
+#ifndef OJCODEEDITORWIDGET_H
+#define OJCODEEDITORWIDGET_H
 
 #include <Wt/WCompositeWidget.h>
 
-namespace Wt {
-
-class WCodeEditorWidget : public WCompositeWidget {
+class OJCodeEditorWidget : public Wt::WCompositeWidget {
 public:
-	WCodeEditorWidget();
-	const std::vector<unsigned char>& code();
-	void setCode(const std::vector<unsigned char>& code);
+OJCodeEditorWidget();
+const std::vector<unsigned char>& code();
+void setCode(const std::vector<unsigned char>& code);
 
 private:
-	virtual void render(WFlags<RenderFlag> flags) override;
-	void create();
-	WContainerWidget *impl_;
-	std::vector<unsigned char> code_;
+virtual void render(Wt::WFlags<Wt::RenderFlag> flags) override;
+void create();
+Wt::WContainerWidget *impl_;
+std::vector<unsigned char> code_;
 };
 
-}
-
-#endif // WCODEEDITORWIDGET_H
+#endif // OJCODEEDITORWIDGET_H
